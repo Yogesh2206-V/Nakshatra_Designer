@@ -18,12 +18,13 @@ import { CheckCircle2, Compass, PhoneCall, Sparkles } from 'lucide-react';
 
 import { retrieveUserAvatar, persistUserAvatar } from './utils/avatarStorage';
 import { isExactAdmin } from './utils/adminAuth';
+import { fallbackOptions } from './data/fallbackData';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('gallery'); // 'gallery', 'reviews', 'settings'
   const [customizerStep, setCustomizerStep] = useState('customize'); // 'customize', 'measurements', or 'confirmed'
   
-  const [options, setOptions] = useState(null);
+  const [options, setOptions] = useState(fallbackOptions);
   const [pendingSpecs, setPendingSpecs] = useState(null);
   const [pendingPrice, setPendingPrice] = useState('');
 

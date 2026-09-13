@@ -3,25 +3,24 @@ import { createPortal } from 'react-dom';
 import { Compass, Sparkles, Scissors, Eye, X, PhoneCall, CheckCircle2, Upload, ShieldCheck, PlusCircle } from 'lucide-react';
 import EnquiryIcon from './EnquiryIcon';
 import { isExactAdmin } from '../utils/adminAuth';
+import { fallbackDesigns } from '../data/fallbackData';
 
 export default function DesignGallery({ onSelectPreset, currentUser, onRequireAuth, onOpenEnquiry, onNavigate }) {
-  const [designs, setDesigns] = useState([]);
+  const [designs, setDesigns] = useState(fallbackDesigns);
   const [activeCategory, setActiveCategory] = useState('All');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [selectedDesignModal, setSelectedDesignModal] = useState(null);
 
   useEffect(() => {
     fetch('/api/designs')
       .then(res => res.json())
       .then(data => {
-        if (data.success) {
+        if (data.success && data.designs && data.designs.length > 0) {
           setDesigns(data.designs);
         }
-        setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching designs:', err);
-        setLoading(false);
+        console.warn('API designs offline, using embedded boutique catalog fallback');
       });
   }, []);
 
