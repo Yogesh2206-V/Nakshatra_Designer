@@ -1,0 +1,658 @@
+:root {
+  --primary-emerald: #0b2b26;
+  --emerald-light: #164e43;
+  --accent-gold: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --gold-dark: #b8860b;
+  --velvet-maroon: #4a0e17;
+  --velvet-light: #721c24;
+  --bg-champagne: #faf6f0;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --text-dark: #1c2321;
+  --text-muted: #5a6561;
+  --border-light: #e5dccb;
+  --border-gold: rgba(212, 175, 55, 0.4);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(11, 43, 38, 0.08);
+  --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.2);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-champagne);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Base Layout Containers */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Glass Card styling */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--border-gold);
+}
+
+/* Gold Accent Badge */
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #fff7d6 0%, #fef0b3 100%);
+  color: #7a5c00;
+  border: 1px solid var(--accent-gold);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Luxury Buttons */
+.btn-gold {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-gold);
+  transition: all 0.25s ease;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.35);
+  background: linear-gradient(135deg, #e5be48 0%, #c9971c 100%);
+}
+
+.btn-emerald {
+  background: var(--primary-emerald);
+  color: #ffffff;
+  border: 1px solid var(--emerald-light);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.25s ease;
+}
+
+.btn-emerald:hover {
+  background: var(--emerald-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary-emerald);
+  border: 1.5px solid var(--primary-emerald);
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(11, 43, 38, 0.06);
+  border-color: var(--accent-gold);
+}
+
+/* Top Announcement Bar */
+.announcement-bar {
+  background: linear-gradient(90deg, #0b2b26 0%, #4a0e17 50%, #0b2b26 100%);
+  color: #fef0b3;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.announcement-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1e9dc;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5b497;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a69171;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Customizer Tab Buttons */
+.tab-button {
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--border-light);
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-button:hover {
+  border-color: var(--accent-gold);
+  color: var(--primary-emerald);
+}
+
+.tab-button.active {
+  background: var(--primary-emerald);
+  color: #ffffff;
+  border-color: var(--primary-emerald);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Selection Cards Grid */
+.option-card {
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-2px);
+}
+
+.option-card.selected {
+  border-color: var(--accent-gold);
+  background: #fffdf5;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+/* Swatch Circle */
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px #d1d5db;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-swatch:hover, .color-swatch.selected {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 3px var(--accent-gold);
+}
+
+/* Navbar Layout Styles */
+.navbar-inner-container {
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-brand {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand-icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b2b26 0%, #4a0e17 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  box-shadow: 0 4px 12px rgba(11, 43, 38, 0.2);
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-emerald);
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.navbar-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fffdf5;
+  border: 1px solid var(--accent-gold);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-compact-signup {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+/* Floating Bottom Nav - Mobile Only (Disabled in Website / Desktop Mode) */
+.floating-bottom-nav {
+  display: none !important;
+}
+
+/* Floating WhatsApp Widget Base Style - Compact & Unobtrusive */
+.whatsapp-floating-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+/* Chatbot Modal Window - Optimized Compact Dimensions */
+.chatbot-modal-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  max-width: calc(100vw - 32px);
+  height: 480px;
+  max-height: calc(100vh - 90px);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  z-index: 2600;
+  overflow: hidden;
+  border: 1.5px solid var(--accent-gold);
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Responsive Rules for Mobile View (<= 768px) */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .navbar-inner-container {
+    padding: 0.45rem 1rem !important;
+  }
+
+  .brand-icon-circle {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .brand-icon-circle svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .mobile-compact-signup {
+    padding: 0.35rem 0.7rem !important;
+    font-size: 0.78rem !important;
+    gap: 0.3rem !important;
+  }
+
+  /* Mobile safe bottom padding to prevent content overlap */
+  .main-content {
+    padding-bottom: 80px !important;
+  }
+
+  footer {
+    padding-bottom: 90px !important;
+  }
+
+  /* Enabled in Mobile View Only */
+  .floating-bottom-nav {
+    display: flex !important;
+    bottom: 14px !important;
+    width: calc(100% - 28px) !important;
+    max-width: 460px !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 16px !important;
+  }
+
+  .whatsapp-floating-widget {
+    bottom: 74px !important;
+    right: 12px !important;
+  }
+
+  .chatbot-modal-window {
+    width: calc(100vw - 20px) !important;
+    max-width: 360px !important;
+    height: 450px !important;
+    bottom: 12px !important;
+    right: 10px !important;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE THEME STYLES
+   ========================================================================== */
+body.dark-theme {
+  --primary-emerald: #34d399;
+  --emerald-light: #10b981;
+  --accent-gold: #fbbf24;
+  --gold-glow: rgba(251, 191, 36, 0.35);
+  --gold-dark: #f59e0b;
+  --bg-champagne: #071614;
+  --bg-card: rgba(13, 30, 27, 0.98);
+  --text-dark: #ffffff;
+  --text-muted: #ffffff;
+  --border-light: rgba(251, 191, 36, 0.3);
+  --border-gold: rgba(251, 191, 36, 0.6);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.7);
+  background-color: #071614 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme p,
+body.dark-theme li,
+body.dark-theme span,
+body.dark-theme label,
+body.dark-theme small,
+body.dark-theme div:not(.user-bubble):not(.bot-bubble) {
+  color: #ffffff;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme strong,
+body.dark-theme b {
+  color: #ffffff !important;
+}
+
+body.dark-theme .gold-badge {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(251, 191, 36, 0.5) !important;
+}
+
+body.dark-theme .stitching-rate-box {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(251, 191, 36, 0.35) !important;
+}
+
+body.dark-theme .stitching-rate-box span {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+body.dark-theme header {
+  background: rgba(7, 22, 20, 0.98) !important;
+  border-bottom-color: rgba(251, 191, 36, 0.25) !important;
+}
+
+body.dark-theme .glass-card {
+  background: rgba(13, 30, 27, 0.98) !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .tab-button {
+  background: rgba(15, 31, 28, 0.95) !important;
+  color: #ffffff !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+body.dark-theme .tab-button.active {
+  background: #0b2b26 !important;
+  color: #ffffff !important;
+  border-color: #fbbf24 !important;
+}
+
+body.dark-theme .option-card {
+  background: rgba(15, 31, 28, 0.95) !important;
+  border-color: rgba(251, 191, 36, 0.25) !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .option-card.selected {
+  background: #0b2b26 !important;
+  border-color: #fbbf24 !important;
+}
+
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background: #0b1f1c !important;
+  color: #ffffff !important;
+  border-color: rgba(251, 191, 36, 0.35) !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
+body.dark-theme .floating-bottom-nav {
+  background: rgba(11, 31, 28, 0.98) !important;
+  border-color: rgba(251, 191, 36, 0.35) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7) !important;
+}
+
+body.dark-theme .floating-bottom-nav button span {
+  color: #ffffff !important;
+}
+
+body.dark-theme .floating-bottom-nav button svg {
+  color: #ffffff !important;
+}
+
+body.dark-theme .user-profile-badge {
+  background: #0b2b26 !important;
+  border-color: #fbbf24 !important;
+}
+
+body.dark-theme .user-profile-badge span {
+  color: #fbbf24 !important;
+}
+
+body.dark-theme .announcement-bar {
+  background: linear-gradient(90deg, #040e0d 0%, #2a080d 50%, #040e0d 100%) !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme footer,
+body.dark-theme footer p,
+body.dark-theme footer span,
+body.dark-theme footer small,
+body.dark-theme footer li,
+body.dark-theme footer div {
+  color: #ffffff !important;
+}
+
+body.dark-theme .coverflow-section p,
+body.dark-theme .coverflow-section span {
+  color: #ffffff !important;
+}
+
+/* Review Component Base Styles */
+.review-tag-badge {
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.review-owner-response {
+  background: #faf6f0;
+}
+
+/* Dark Mode Review Styles */
+body.dark-theme .review-tag-badge {
+  background: #0f2724 !important;
+  color: #ffffff !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+body.dark-theme .review-owner-response {
+  background: #0a211d !important;
+  border-left-color: #fbbf24 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .review-owner-response p,
+body.dark-theme .review-owner-response span,
+body.dark-theme .review-owner-response strong {
+  color: #ffffff !important;
+}
+
+/* Comprehensive Dark Mode White Color Overrides */
+body.dark-theme [style*="color: rgb(148, 163, 184)"],
+body.dark-theme [style*="color: #94a3b8"],
+body.dark-theme [style*="color: rgb(203, 213, 225)"],
+body.dark-theme [style*="color: #cbd5e1"],
+body.dark-theme [style*="color: rgb(100, 116, 139)"],
+body.dark-theme [style*="color: #64748b"],
+body.dark-theme [style*="color: rgb(90, 101, 97)"],
+body.dark-theme [style*="color: #5a6561"],
+body.dark-theme [style*="color: rgb(226, 232, 240)"],
+body.dark-theme [style*="color: #e2e8f0"] {
+  color: #ffffff !important;
+}
+
+body.dark-theme [style*="background: #ffffff"],
+body.dark-theme [style*="background: rgb(255, 255, 255)"] {
+  background: rgba(13, 30, 27, 0.98) !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme [style*="background: #faf6f0"],
+body.dark-theme [style*="background: rgb(250, 246, 240)"] {
+  background: rgba(11, 43, 38, 0.5) !important;
+}
+
+body.dark-theme [style*="border-color: #f1f5f9"],
+body.dark-theme [style*="border-bottom: 1px solid #f1f5f9"],
+body.dark-theme [style*="border-top: 1px solid #f1f5f9"] {
+  border-color: rgba(251, 191, 36, 0.25) !important;
+}
+
+/* Maintain Chatbot message bubbles contrast inside dark theme */
+body.dark-theme .chatbot-modal-window [style*="background: #ffffff"],
+body.dark-theme .chatbot-modal-window [style*="background: rgb(255, 255, 255)"] {
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+body.dark-theme .chatbot-modal-window [style*="background: #f8fafc"] {
+  background: #0d2823 !important;
+}
+
+/* Mobile bottom spacing for floating bottom nav */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: 5.5rem;
+  }
+}

@@ -1,0 +1,6 @@
+# Robots.txt for Nakshatra Designer's
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nakshatradesigners.vercel.app/sitemap.xml

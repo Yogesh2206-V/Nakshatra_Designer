@@ -1,0 +1,16 @@
+{
+  "short_name": "Nakshatra",
+  "name": "Nakshatra Designer's - Custom Blouse & Frocks",
+  "icons": [
+    {
+      "src": "/asset/blouses/blouse_61.jpeg",
+      "type": "image/jpeg",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0b2b26",
+  "theme_color": "#d4af37",
+  "display": "standalone",
+  "orientation": "portrait"
+}
