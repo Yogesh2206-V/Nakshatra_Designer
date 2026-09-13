@@ -1,6 +1,15 @@
+# Dependencies
 node_modules/
+*/node_modules/
+**/node_modules/
+
+# Production Builds
 dist/
+frontend/dist/
+
+# OS / Environment / IDE
 .DS_Store
+**/.DS_Store
 *.log
 .env
 .env.local
