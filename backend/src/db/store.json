@@ -2078,7 +2078,7 @@
       "name": "Nakshatradesign",
       "phone": "9123500065",
       "email": "nakshatradesign@gmail.com",
-      "password": "$2b$10$nVGdomzd.BuPN39OgqzpdeUYRuK.68fngtbkydisW4VI2BaEUpdMO",
+      "password": "$2b$10$uQkFGHJkKkn9JNxpRyX6Ze3.nfYgm/F0Lv/OoCi7XUVYDEDlQO6Xi",
       "role": "admin",
       "isAdmin": true,
       "createdAt": "2026-09-13T01:25:36.831Z"
@@ -2102,6 +2102,26 @@
       "role": "user",
       "isAdmin": false,
       "createdAt": "2026-09-13T03:16:19.223Z"
+    },
+    {
+      "id": "usr_1789441155709",
+      "name": "Priya Sharma",
+      "phone": "9876543210",
+      "email": "",
+      "password": "$2b$10$1HsR2pKeU4hss68NlbwZN.AK2AB4F6DOKsngXMIi0JlULjviNoS6e",
+      "role": "user",
+      "isAdmin": false,
+      "createdAt": "2026-09-15T02:59:15.726Z"
+    },
+    {
+      "id": "usr_1789441184997",
+      "name": "Kavitha S",
+      "phone": "9842112345",
+      "email": "",
+      "password": "$2b$10$og0GPozIw25IdiII0miYk.0.8Y5ncKmoGn/JsYZhwxJUh3Wpi9uaS",
+      "role": "user",
+      "isAdmin": false,
+      "createdAt": "2026-09-15T02:59:44.997Z"
     }
   ]
 }
