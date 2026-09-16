@@ -375,51 +375,64 @@ a {
     display: none !important;
   }
 
+  .section-container {
+    padding: 1.25rem 0.85rem !important;
+  }
+
   .navbar-inner-container {
-    padding: 0.45rem 1rem !important;
+    padding: 0.45rem 0.85rem !important;
   }
 
   .brand-icon-circle {
-    width: 32px !important;
-    height: 32px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
 
   .brand-icon-circle svg {
-    width: 16px !important;
-    height: 16px !important;
+    width: 15px !important;
+    height: 15px !important;
   }
 
   .brand-title {
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
+  }
+
+  .navbar-nav-links {
+    gap: 0.35rem !important;
+  }
+
+  .user-profile-badge {
+    padding: 0.15rem 0.45rem 0.15rem 0.2rem !important;
+    gap: 0.3rem !important;
   }
 
   .mobile-compact-signup {
-    padding: 0.35rem 0.7rem !important;
-    font-size: 0.78rem !important;
-    gap: 0.3rem !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    gap: 0.25rem !important;
   }
 
   /* Mobile safe bottom padding to prevent content overlap */
   .main-content {
-    padding-bottom: 80px !important;
+    padding-bottom: 75px !important;
   }
 
   footer {
-    padding-bottom: 90px !important;
+    padding-bottom: 85px !important;
   }
 
   /* Enabled in Mobile View Only */
   .floating-bottom-nav {
     display: flex !important;
-    bottom: 14px !important;
-    width: calc(100% - 28px) !important;
-    max-width: 460px !important;
-    padding: 0.4rem 0.8rem !important;
-    border-radius: 16px !important;
+    bottom: 10px !important;
+    width: calc(100% - 20px) !important;
+    max-width: 380px !important;
+    padding: 0.25rem 0.35rem !important;
+    border-radius: 20px !important;
   }
 
   .whatsapp-floating-widget {
-    bottom: 74px !important;
+    bottom: 68px !important;
     right: 12px !important;
   }
 
@@ -427,7 +440,7 @@ a {
     width: calc(100vw - 20px) !important;
     max-width: 360px !important;
     height: 450px !important;
-    bottom: 12px !important;
+    bottom: 10px !important;
     right: 10px !important;
   }
 }

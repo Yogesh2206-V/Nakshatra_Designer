@@ -133,7 +133,7 @@ export default function MeasurementForm({ designSpecs, totalPrice, onBack, onOrd
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Anitha Sundaram"
+                  placeholder="Enter Name"
                   value={customer.name}
                   onChange={e => setCustomer({ ...customer, name: e.target.value })}
                   style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-light)', outline: 'none' }}
@@ -147,7 +147,7 @@ export default function MeasurementForm({ designSpecs, totalPrice, onBack, onOrd
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. +91 94432 73993"
+                  placeholder="Enter Number"
                   value={customer.phone}
                   onChange={e => setCustomer({ ...customer, phone: e.target.value })}
                   style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-light)', outline: 'none' }}
@@ -160,7 +160,7 @@ export default function MeasurementForm({ designSpecs, totalPrice, onBack, onOrd
                 </label>
                 <input
                   type="email"
-                  placeholder="e.g. customer@example.com"
+                  placeholder="Enter Email Address"
                   value={customer.email}
                   onChange={e => setCustomer({ ...customer, email: e.target.value })}
                   style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-light)', outline: 'none' }}

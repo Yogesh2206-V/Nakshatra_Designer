@@ -517,7 +517,7 @@ export default function ReviewsFeedback({ currentUser, onRequireAuth }) {
       </div>
 
       {/* Main Grid: Left Review Submission Form, Right Reviews List */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem', alignItems: 'start' }}>
         
         {/* Left Form: Submit Review */}
         <div className="glass-card review-form-card" style={{ padding: '2rem', sticky: 'top', top: '100px' }}>
@@ -584,7 +584,7 @@ export default function ReviewsFeedback({ currentUser, onRequireAuth }) {
               </label>
               <input
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter Name"
                 value={reviewerName}
                 onChange={e => setReviewerName(e.target.value)}
                 required

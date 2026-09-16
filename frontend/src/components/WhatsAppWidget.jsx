@@ -129,8 +129,8 @@ export default function WhatsAppWidget({ phoneNumber = '919123514214', onOpenCha
         title="Chat on WhatsApp (+91 91235 14214)"
         style={{
           position: 'relative',
-          width: '38px',
-          height: '38px',
+          width: '36px',
+          height: '36px',
           borderRadius: '50%',
           background: '#25D366',
           boxShadow: '0 4px 14px rgba(37, 211, 102, 0.4), 0 2px 5px rgba(0, 0, 0, 0.15)',
@@ -141,13 +141,14 @@ export default function WhatsAppWidget({ phoneNumber = '919123514214', onOpenCha
           cursor: 'pointer',
           transition: 'transform 0.2s ease',
           padding: 0,
-          outline: 'none'
+          outline: 'none',
+          flexShrink: 0
         }}
         onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
         onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1.0)')}
       >
         {/* WhatsApp Official SVG Logo */}
-        <svg viewBox="0 0 32 32" width="20" height="20" fill="#ffffff">
+        <svg viewBox="0 0 32 32" width="18" height="18" fill="#ffffff">
           <path d="M16 2a13 13 0 0 0-11 20L3 29l7-2a13 13 0 1 0 6-25zm0 24a11 11 0 0 1-5.6-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4A11 11 0 1 1 16 26zm6-8.2c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a9 9 0 0 1-2.6-1.6 10 10 0 0 1-1.8-2.3c-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.4.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.6-.5-.8-.5h-.7c-.2 0-.7.1-1 .4a4.4 4.4 0 0 0-1.4 3.3c0 2 1.4 3.9 1.6 4.1.2.3 2.8 4.3 6.8 6 1 .4 1.7.6 2.3.8 1 .3 1.9.3 2.6.2.8-.1 2.5-1 2.9-2s.4-1.8.3-2c-.1-.2-.4-.3-.7-.4z" />
         </svg>
 
@@ -157,13 +158,13 @@ export default function WhatsAppWidget({ phoneNumber = '919123514214', onOpenCha
             position: 'absolute',
             top: '-2px',
             right: '-2px',
-            width: '15px',
-            height: '15px',
+            width: '14px',
+            height: '14px',
             borderRadius: '50%',
             background: '#ff0000',
             color: '#ffffff',
             fontWeight: 800,
-            fontSize: '0.62rem',
+            fontSize: '0.6rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

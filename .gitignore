@@ -5,13 +5,27 @@ node_modules/
 
 # Production Builds
 dist/
+build/
+*/dist/
 frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 
 # OS / Environment / IDE
 .DS_Store
 **/.DS_Store
-*.log
-.env
-.env.local
-.gemini/
-scratch/
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

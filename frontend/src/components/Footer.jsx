@@ -5,7 +5,7 @@ export default function Footer({ onNavigate }) {
   return (
     <footer style={{ background: 'var(--primary-emerald)', color: '#ffffff', paddingTop: '3rem', paddingBottom: '2rem', marginTop: '4rem', borderTop: '4px solid var(--accent-gold)' }}>
       <div className="section-container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2.5rem', marginBottom: '2.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', gap: '2rem', marginBottom: '2.5rem' }}>
           
           {/* Column 1: Shop Bio */}
           <div>

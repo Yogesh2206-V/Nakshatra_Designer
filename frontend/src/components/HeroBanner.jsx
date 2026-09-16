@@ -18,9 +18,11 @@ export default function HeroBanner({ onStartCustomize, onOpenEnquiry }) {
     <section style={{
       background: 'linear-gradient(135deg, #0b2b26 0%, #164e43 50%, #4a0e17 100%)',
       color: '#ffffff',
-      padding: '3.5rem 1.5rem 4rem 1.5rem',
+      padding: 'clamp(2rem, 5vw, 3.5rem) clamp(0.75rem, 3vw, 1.5rem)',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '100%',
+      maxWidth: '100vw'
     }}>
       {/* Subtle Background Glow Elements */}
       <div style={{
@@ -35,64 +37,64 @@ export default function HeroBanner({ onStartCustomize, onOpenEnquiry }) {
       }} />
 
       <div className="section-container" style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem', alignItems: 'center' }}>
           
           {/* Hero Left Content */}
-          <div>
-            <div className="gold-badge" style={{ marginBottom: '1.2rem' }}>
-              <Sparkles size={14} /> Nakshatra Designer's • Est. 2000 (25+ Yrs Excellence)
+          <div style={{ minWidth: 0 }}>
+            <div className="gold-badge" style={{ marginBottom: '1.2rem', maxWidth: '100%', whiteSpace: 'normal', lineHeight: 1.3 }}>
+              <Sparkles size={14} style={{ flexShrink: 0 }} /> Nakshatra Designer's • Est. 2000 (25+ Yrs Excellence)
             </div>
 
-            <h1 style={{ fontSize: '2.8rem', fontWeight: 700, lineHeight: 1.15, marginBottom: '1.2rem', fontFamily: 'var(--font-serif)' }}>
+            <h1 style={{ fontSize: 'clamp(1.7rem, 6vw, 2.8rem)', fontWeight: 700, lineHeight: 1.18, marginBottom: '1.2rem', fontFamily: 'var(--font-serif)', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
               Custom <span style={{ color: 'var(--accent-gold)' }}>Blouse, Frocks</span> & Saree-to-Frock Conversions
             </h1>
 
-            <p style={{ fontSize: '1.05rem', color: '#e2e8f0', lineHeight: 1.6, marginBottom: '1.8rem' }}>
+            <p style={{ fontSize: 'clamp(0.92rem, 2.8vw, 1.05rem)', color: '#e2e8f0', lineHeight: 1.6, marginBottom: '1.8rem', overflowWrap: 'break-word' }}>
               Visit our boutique shop in Tiruchengode West (Opp. Sivakumar Metal Mart) for precision custom tailoring! We specialize in bridal saree blouses, designer frocks, saree pre-pleating, and converting your silk sarees into modern maxi gowns.
             </p>
 
             {/* Hero Action CTA Buttons */}
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
               <button 
                 className="btn-gold"
                 onClick={onStartCustomize}
-                style={{ padding: '0.85rem 1.6rem', fontSize: '0.98rem', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 20px rgba(212, 175, 55, 0.4)' }}
+                style={{ padding: '0.75rem 1.4rem', fontSize: '0.92rem', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 20px rgba(212, 175, 55, 0.4)' }}
               >
-                <Sparkles size={18} /> Explore Lookbook Designs
+                <Sparkles size={16} /> Explore Lookbook Designs
               </button>
 
               <button
                 className="btn-outline"
                 onClick={() => onOpenEnquiry && onOpenEnquiry('Boutique Fitting & Rate Consultation')}
-                style={{ padding: '0.85rem 1.4rem', fontSize: '0.95rem', borderColor: 'rgba(255,255,255,0.4)', color: '#ffffff', background: 'rgba(255,255,255,0.08)' }}
+                style={{ padding: '0.75rem 1.2rem', fontSize: '0.9rem', borderColor: 'rgba(255,255,255,0.4)', color: '#ffffff', background: 'rgba(255,255,255,0.08)' }}
               >
-                <EnquiryIcon size={18} /> Enquire Rates
+                <EnquiryIcon size={16} /> Enquire Rates
               </button>
             </div>
 
             {/* Key Trust Highlights */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
-                <Star size={16} fill="#d4af37" color="#d4af37" />
-                <span><strong>4.9 / 5</strong> Justdial Verified (28+ Reviews)</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', paddingTop: '1.2rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.84rem' }}>
+                <Star size={15} fill="#d4af37" color="#d4af37" style={{ flexShrink: 0 }} />
+                <span><strong>4.9 / 5</strong> Justdial (28+ Reviews)</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
-                <ShieldCheck size={16} color="#d4af37" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.84rem' }}>
+                <ShieldCheck size={15} color="#d4af37" style={{ flexShrink: 0 }} />
                 <span>In-Shop Fitting Trial</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem' }}>
-                <Truck size={16} color="#d4af37" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.84rem' }}>
+                <Truck size={15} color="#d4af37" style={{ flexShrink: 0 }} />
                 <span>Saree Pre-Pleating & Reuse</span>
               </div>
             </div>
           </div>
 
           {/* Hero Right Visual Card */}
-          <div>
-            <div className="glass-card" style={{ padding: '1.8rem', background: 'rgba(255, 255, 255, 0.95)', color: 'var(--text-dark)' }}>
+          <div style={{ minWidth: 0 }}>
+            <div className="glass-card" style={{ padding: 'clamp(1.1rem, 3vw, 1.8rem)', background: 'rgba(255, 255, 255, 0.95)', color: 'var(--text-dark)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.2rem' }}>
-                <h3 style={{ fontSize: '1.2rem', color: 'var(--primary-emerald)' }}>Boutique Tailoring Rates</h3>
-                <span className="gold-badge">Custom Tailoring</span>
+                <h3 style={{ fontSize: '1.15rem', color: 'var(--primary-emerald)' }}>Boutique Tailoring Rates</h3>
+                <span className="gold-badge" style={{ fontSize: '0.78rem' }}>Custom Tailoring</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.92rem' }}>

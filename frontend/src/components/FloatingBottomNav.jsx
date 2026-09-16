@@ -77,24 +77,24 @@ export default function FloatingBottomNav({ activeTab, setActiveTab, onNavigate,
       className="floating-bottom-nav"
       style={{
         position: 'fixed',
-        bottom: '16px',
+        bottom: '12px',
         left: '50%',
         transform: isVisible ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(150%)',
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? 'auto' : 'none',
         transition: 'transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease',
         zIndex: 1500,
-        background: '#ffffff',
-        borderRadius: '16px',
-        boxShadow: '0 12px 35px rgba(11, 43, 38, 0.22)',
-        padding: '0.4rem 0.8rem',
+        background: 'rgba(255, 255, 255, 0.96)',
+        borderRadius: '20px',
+        boxShadow: '0 8px 30px rgba(11, 43, 38, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08)',
+        padding: '0.25rem 0.4rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        border: '1.5px solid rgba(212, 175, 55, 0.35)',
+        border: '1.2px solid rgba(212, 175, 55, 0.4)',
         backdropFilter: 'blur(16px)',
-        width: 'calc(100% - 32px)',
-        maxWidth: '460px'
+        width: 'calc(100% - 24px)',
+        maxWidth: '380px'
       }}
     >
       {navItems.map((item, index) => {
@@ -106,11 +106,12 @@ export default function FloatingBottomNav({ activeTab, setActiveTab, onNavigate,
             {index > 0 && (
               <div 
                 style={{
-                  height: '28px',
+                  height: '18px',
                   width: '1px',
                   background: '#e2e8f0',
-                  margin: '0 0.1rem',
-                  opacity: 0.8
+                  margin: '0 1px',
+                  opacity: 0.7,
+                  flexShrink: 0
                 }} 
               />
             )}
@@ -123,21 +124,22 @@ export default function FloatingBottomNav({ activeTab, setActiveTab, onNavigate,
                 cursor: 'pointer',
                 display: 'flex',
                 flex: 1,
+                minWidth: 0,
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '0.25rem 0.5rem',
-                gap: '0.2rem',
+                padding: '0.2rem 0.25rem',
+                gap: '2px',
                 transition: 'all 0.2s ease',
                 outline: 'none'
               }}
             >
-              {/* Icon Circle */}
+              {/* Compact Icon Circle */}
               <div
                 className={isActive ? 'active-icon-circle' : ''}
                 style={{
-                  width: '42px',
-                  height: '42px',
+                  width: '32px',
+                  height: '32px',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
@@ -145,23 +147,24 @@ export default function FloatingBottomNav({ activeTab, setActiveTab, onNavigate,
                   background: isActive ? '#fef3c7' : 'transparent',
                   color: isActive ? '#92400e' : '#64748b',
                   transition: 'all 0.2s ease',
-                  boxShadow: isActive ? '0 2px 8px rgba(212, 175, 55, 0.25)' : 'none'
+                  boxShadow: isActive ? '0 2px 6px rgba(212, 175, 55, 0.3)' : 'none'
                 }}
               >
                 <IconComponent 
-                  size={21} 
+                  size={16} 
                   fill={isActive && item.id === 'reviews' ? '#92400e' : 'none'} 
                 />
               </div>
 
-              {/* Label */}
+              {/* Compact Label */}
               <span
                 style={{
-                  fontSize: '0.76rem',
+                  fontSize: '0.68rem',
                   fontWeight: isActive ? 700 : 500,
                   color: isActive ? '#92400e' : '#64748b',
                   letterSpacing: '0.01em',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1.1
                 }}
               >
                 {item.label}

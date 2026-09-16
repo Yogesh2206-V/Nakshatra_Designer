@@ -116,8 +116,8 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
             title={darkMode ? "Switch to Normal Light Mode" : "Switch to Dark Mode"}
             aria-label="Toggle Theme"
             style={{
-              width: '34px',
-              height: '34px',
+              width: '30px',
+              height: '30px',
               borderRadius: '50%',
               background: darkMode ? '#0b2b26' : '#faf6f0',
               border: '1px solid var(--accent-gold)',
@@ -130,10 +130,10 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
               padding: 0,
               flexShrink: 0
             }}
-            onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
+            onMouseOver={e => e.currentTarget.style.transform = 'scale(1.08)'}
             onMouseOut={e => e.currentTarget.style.transform = 'scale(1.0)'}
           >
-            {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+            {darkMode ? <Sun size={15} /> : <Moon size={15} />}
           </button>
 
           {/* Top Right User Profile Image Action */}
@@ -144,28 +144,31 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.45rem',
-                padding: '0.25rem 0.7rem 0.25rem 0.35rem',
-                borderRadius: '24px',
+                gap: '0.35rem',
+                padding: '0.18rem 0.5rem 0.18rem 0.22rem',
+                borderRadius: '20px',
                 background: 'var(--bg-champagne)',
-                border: '1.5px solid var(--accent-gold)',
+                border: '1.2px solid var(--accent-gold)',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+                boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+                outline: 'none',
+                minWidth: 0,
+                flexShrink: 1
               }}
               title="Click to open Side Navbar & Profile"
             >
               {/* Avatar Circle */}
               <div style={{
-                width: '32px',
-                height: '32px',
+                width: '26px',
+                height: '26px',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 background: 'linear-gradient(135deg, #0b2b26 0%, #164e43 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '1.5px solid var(--accent-gold)',
+                border: '1.2px solid var(--accent-gold)',
                 flexShrink: 0,
                 position: 'relative'
               }}>
@@ -176,24 +179,26 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 ) : (
-                  <span style={{ color: '#ffffff', fontWeight: 700, fontSize: '0.85rem' }}>
-                    {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : <User size={16} />}
+                  <span style={{ color: '#ffffff', fontWeight: 700, fontSize: '0.75rem' }}>
+                    {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : <User size={13} />}
                   </span>
                 )}
               </div>
 
-              <span style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--text-dark)', maxWidth: '95px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-dark)', maxWidth: '72px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', lineHeight: 1 }}>
                 {currentUser.name.split(' ')[0]}
               </span>
 
               {!currentUser.avatar && (
                 <span style={{
-                  fontSize: '0.68rem',
+                  fontSize: '0.62rem',
                   background: 'var(--accent-gold)',
                   color: '#0b2b26',
-                  padding: '0.12rem 0.4rem',
-                  borderRadius: '8px',
-                  fontWeight: 700
+                  padding: '0.08rem 0.32rem',
+                  borderRadius: '6px',
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  flexShrink: 0
                 }}>
                   +Photo
                 </span>
@@ -204,7 +209,7 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
               className="btn-gold mobile-compact-signup"
               onClick={onOpenAuth}
             >
-              <UserPlus size={15} /> <span>Sign Up</span>
+              <UserPlus size={14} /> <span>Sign Up</span>
             </button>
           )}
 
@@ -213,9 +218,9 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
             onClick={onOpenSideNav}
             aria-label="Open Side Navbar"
             style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '8px',
+              width: '30px',
+              height: '30px',
+              borderRadius: '7px',
               background: 'var(--primary-emerald)',
               color: '#ffffff',
               border: '1px solid var(--border-gold)',
@@ -225,13 +230,14 @@ export default function Navbar({ activeTab, setActiveTab, currentUser, onOpenAut
               cursor: 'pointer',
               boxShadow: 'var(--shadow-sm)',
               transition: 'all 0.2s ease',
-              padding: 0
+              padding: 0,
+              flexShrink: 0
             }}
             title="Open Side Menu"
             onMouseOver={e => e.currentTarget.style.transform = 'scale(1.06)'}
             onMouseOut={e => e.currentTarget.style.transform = 'scale(1.0)'}
           >
-            <Menu size={20} />
+            <Menu size={16} />
           </button>
 
         </nav>
