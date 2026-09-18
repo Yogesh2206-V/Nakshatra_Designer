@@ -4,10 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const BUNDLED_DB_FILE = path.join(__dirname, 'store.json');
-const DB_FILE = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME 
-  ? path.join('/tmp', 'nakshatra_store.json') 
-  : BUNDLED_DB_FILE;
+const DB_FILE = path.join(__dirname, 'store.json');
 
 const defaultData = {
   shopInfo: {

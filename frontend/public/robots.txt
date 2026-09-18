@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://nakshatra-designer.vercel.app/sitemap.xml
+Sitemap: /sitemap.xml
