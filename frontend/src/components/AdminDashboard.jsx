@@ -22,16 +22,41 @@ import {
 } from 'lucide-react';
 import { compressImage } from '../utils/avatarStorage';
 import { isExactAdmin } from '../utils/adminAuth';
+import { fallbackDesigns } from '../data/fallbackData';
 import { 
   getAllDesigns, 
   saveNewDesign, 
   deleteDesignById, 
-  subscribeToDesignChanges 
+  subscribeToDesignChanges,
+  getLocalCustomDesigns,
+  getLocalDeletedDesignIds
 } from '../utils/designStorage';
 
 export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateToGallery }) {
-  const [designs, setDesigns] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [designs, setDesigns] = useState(() => {
+    try {
+      const localCustom = getLocalCustomDesigns();
+      const deletedIds = new Set(getLocalDeletedDesignIds());
+      const seen = new Set();
+      const list = [];
+      for (const d of localCustom) {
+        if (d && d.id && !deletedIds.has(d.id) && !seen.has(d.id)) {
+          seen.add(d.id);
+          list.push(d);
+        }
+      }
+      for (const d of fallbackDesigns) {
+        if (d && d.id && !deletedIds.has(d.id) && !seen.has(d.id)) {
+          seen.add(d.id);
+          list.push(d);
+        }
+      }
+      return list.length > 0 ? list : fallbackDesigns;
+    } catch (e) {
+      return fallbackDesigns || [];
+    }
+  });
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('upload'); // 'upload', 'manage'
 
   // Warning Modal State for Deleting a Design

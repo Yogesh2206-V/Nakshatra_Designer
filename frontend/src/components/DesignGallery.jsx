@@ -3,11 +3,37 @@ import { createPortal } from 'react-dom';
 import { Compass, Sparkles, Scissors, Eye, X, PhoneCall, CheckCircle2, Upload, ShieldCheck, PlusCircle } from 'lucide-react';
 import EnquiryIcon from './EnquiryIcon';
 import { isExactAdmin } from '../utils/adminAuth';
-import { fallbackDesigns } from '../data/fallbackData';
-import { getAllDesigns, subscribeToDesignChanges } from '../utils/designStorage';
+import { 
+  getAllDesigns, 
+  subscribeToDesignChanges,
+  getLocalCustomDesigns,
+  getLocalDeletedDesignIds
+} from '../utils/designStorage';
 
 export default function DesignGallery({ onSelectPreset, currentUser, onRequireAuth, onOpenEnquiry, onNavigate }) {
-  const [designs, setDesigns] = useState(fallbackDesigns);
+  const [designs, setDesigns] = useState(() => {
+    try {
+      const localCustom = getLocalCustomDesigns();
+      const deletedIds = new Set(getLocalDeletedDesignIds());
+      const seen = new Set();
+      const list = [];
+      for (const d of localCustom) {
+        if (d && d.id && !deletedIds.has(d.id) && !seen.has(d.id)) {
+          seen.add(d.id);
+          list.push(d);
+        }
+      }
+      for (const d of fallbackDesigns) {
+        if (d && d.id && !deletedIds.has(d.id) && !seen.has(d.id)) {
+          seen.add(d.id);
+          list.push(d);
+        }
+      }
+      return list.length > 0 ? list : fallbackDesigns;
+    } catch (e) {
+      return fallbackDesigns || [];
+    }
+  });
   const [activeCategory, setActiveCategory] = useState('All');
   const [loading, setLoading] = useState(false);
   const [selectedDesignModal, setSelectedDesignModal] = useState(null);
