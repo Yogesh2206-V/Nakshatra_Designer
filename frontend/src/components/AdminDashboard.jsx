@@ -22,6 +22,12 @@ import {
 } from 'lucide-react';
 import { compressImage } from '../utils/avatarStorage';
 import { isExactAdmin } from '../utils/adminAuth';
+import { 
+  getAllDesigns, 
+  saveNewDesign, 
+  deleteDesignById, 
+  subscribeToDesignChanges 
+} from '../utils/designStorage';
 
 export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateToGallery }) {
   const [designs, setDesigns] = useState([]);
@@ -55,15 +61,12 @@ export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateT
 
   const fileInputRef = useRef(null);
 
-  // Fetch designs
+  // Fetch designs (hybrid server + local boutique storage)
   const refreshData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/designs');
-      const data = await res.json();
-      if (data.success) {
-        setDesigns(data.designs || []);
-      }
+      const list = await getAllDesigns();
+      setDesigns(list || []);
     } catch (err) {
       console.error('Error fetching admin designs:', err);
     } finally {
@@ -73,6 +76,10 @@ export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateT
 
   useEffect(() => {
     refreshData();
+    const unsubscribe = subscribeToDesignChanges(() => {
+      refreshData();
+    });
+    return () => unsubscribe();
   }, []);
 
   // Handle local image file upload & compression
@@ -99,7 +106,7 @@ export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateT
     }
   };
 
-  // Form submit handler
+  // Form submit handler with guaranteed save fallback
   const handleCreateDesign = async (e) => {
     e.preventDefault();
     if (!imagePreview) {
@@ -130,29 +137,23 @@ export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateT
         price: 'Affordable Rate'
       };
 
-      const res = await fetch('/api/designs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      const result = await saveNewDesign(payload);
 
-      const data = await res.json();
-
-      if (data.success) {
+      if (result.success) {
         setSuccessMessage(`✨ Design "${title}" published successfully to the Boutique Lookbook!`);
         // Reset form
         setTitle('');
         setDescription('');
         setImagePreview('');
         setCustomCategory('');
-        refreshData();
+        await refreshData();
         setTimeout(() => setSuccessMessage(''), 6000);
       } else {
-        setErrorMessage(data.message || 'Failed to add design.');
+        setErrorMessage('Failed to add design.');
       }
     } catch (err) {
       console.error('Error creating design:', err);
-      setErrorMessage('Network error while saving design. Please try again.');
+      setErrorMessage('Could not save design. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -169,20 +170,13 @@ export default function AdminDashboard({ currentUser, onOpenEnquiry, onNavigateT
     setIsDeleting(true);
 
     try {
-      const res = await fetch(`/api/designs/${designToDelete.id}`, {
-        method: 'DELETE'
-      });
-      const data = await res.json();
-      if (data.success) {
-        setDesigns(prev => prev.filter(d => d.id !== designToDelete.id));
-        setSuccessMessage(`✨ Design "${designToDelete.title}" was permanently removed from the catalog.`);
-        setTimeout(() => setSuccessMessage(''), 5000);
-      } else {
-        alert(data.message || 'Failed to delete design.');
-      }
+      await deleteDesignById(designToDelete.id);
+      setDesigns(prev => prev.filter(d => d.id !== designToDelete.id));
+      setSuccessMessage(`✨ Design "${designToDelete.title}" was permanently removed from the catalog.`);
+      setTimeout(() => setSuccessMessage(''), 5000);
     } catch (err) {
       console.error('Error deleting design:', err);
-      alert('Error deleting design from server.');
+      alert('Error deleting design.');
     } finally {
       setIsDeleting(false);
       setDesignToDelete(null);

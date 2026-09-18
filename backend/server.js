@@ -25,21 +25,31 @@ mongoose.connect(MONGO_URI)
     console.warn(`⚠️ MongoDB connection error (using local database store fallback): ${err.message}`);
   });
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/options', optionsRoutes);
-app.use('/api/designs', designsRoutes);
-app.use('/api/orders', ordersRoutes);
-app.use('/api/pickups', pickupsRoutes);
+// Routes - Mounted on both /api/* and /* for full Vercel serverless compatibility
+['/api/auth', '/auth'].forEach(p => app.use(p, authRoutes));
+['/api/options', '/options'].forEach(p => app.use(p, optionsRoutes));
+['/api/designs', '/designs'].forEach(p => app.use(p, designsRoutes));
+['/api/orders', '/orders'].forEach(p => app.use(p, ordersRoutes));
+['/api/pickups', '/pickups'].forEach(p => app.use(p, pickupsRoutes));
 
-// Health check
-app.get('/api/health', (req, res) => {
+// Health check endpoints
+const healthCheck = (req, res) => {
   res.json({
     status: 'online',
     service: "Nakshatra Designer's Blouse Stitching API",
     mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected/fallback',
     time: new Date().toISOString()
   });
+};
+
+app.get('/api/health', healthCheck);
+app.get('/health', healthCheck);
+app.get('/api', healthCheck);
+app.get('/', (req, res, next) => {
+  if (process.env.VERCEL) {
+    return healthCheck(req, res);
+  }
+  next();
 });
 
 if (!process.env.VERCEL) {

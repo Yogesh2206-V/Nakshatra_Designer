@@ -4,6 +4,7 @@ import { Compass, Sparkles, Scissors, Eye, X, PhoneCall, CheckCircle2, Upload, S
 import EnquiryIcon from './EnquiryIcon';
 import { isExactAdmin } from '../utils/adminAuth';
 import { fallbackDesigns } from '../data/fallbackData';
+import { getAllDesigns, subscribeToDesignChanges } from '../utils/designStorage';
 
 export default function DesignGallery({ onSelectPreset, currentUser, onRequireAuth, onOpenEnquiry, onNavigate }) {
   const [designs, setDesigns] = useState(fallbackDesigns);
@@ -11,17 +12,23 @@ export default function DesignGallery({ onSelectPreset, currentUser, onRequireAu
   const [loading, setLoading] = useState(false);
   const [selectedDesignModal, setSelectedDesignModal] = useState(null);
 
+  const loadGalleryDesigns = async () => {
+    try {
+      const list = await getAllDesigns();
+      if (list && list.length > 0) {
+        setDesigns(list);
+      }
+    } catch (err) {
+      console.warn('Using embedded boutique catalog fallback');
+    }
+  };
+
   useEffect(() => {
-    fetch('/api/designs')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && data.designs && data.designs.length > 0) {
-          setDesigns(data.designs);
-        }
-      })
-      .catch(err => {
-        console.warn('API designs offline, using embedded boutique catalog fallback');
-      });
+    loadGalleryDesigns();
+    const unsubscribe = subscribeToDesignChanges(() => {
+      loadGalleryDesigns();
+    });
+    return () => unsubscribe();
   }, []);
 
   const categories = ['All', 'Blouses', 'Bridal Aari', 'Frocks', 'Saree Pre-Pleating', 'Skirt Shirt', 'Chudithar', 'Lehenga'];

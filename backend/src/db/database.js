@@ -4,7 +4,10 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DB_FILE = path.join(__dirname, 'store.json');
+const BUNDLED_DB_FILE = path.join(__dirname, 'store.json');
+const DB_FILE = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME 
+  ? path.join('/tmp', 'nakshatra_store.json') 
+  : BUNDLED_DB_FILE;
 
 const defaultData = {
   shopInfo: {
@@ -1778,6 +1781,10 @@ class Store {
       if (fs.existsSync(DB_FILE)) {
         const raw = fs.readFileSync(DB_FILE, 'utf8');
         this.data = { ...defaultData, ...JSON.parse(raw) };
+      } else if (fs.existsSync(BUNDLED_DB_FILE)) {
+        const raw = fs.readFileSync(BUNDLED_DB_FILE, 'utf8');
+        this.data = { ...defaultData, ...JSON.parse(raw) };
+        this.save();
       } else {
         this.save();
       }
@@ -1790,7 +1797,7 @@ class Store {
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf8');
     } catch (e) {
-      console.error('Error persisting database store:', e.message);
+      console.warn('Store persistence notice (in-memory fallback active):', e.message);
     }
   }
 }
